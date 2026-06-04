@@ -1,65 +1,65 @@
-import Image from "next/image";
+'use client';
+import Link from 'next/link';
 
 export default function Home() {
+  const sports = ['Basketball', 'Pickleball', 'Volleyball'];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="min-h-screen flex flex-col items-center p-8 md:p-20 text-white">
+      {/* Brand Header */}
+      <div className="text-center mb-16">
+        <h1 className="text-6xl md:text-8xl font-black uppercase italic tracking-tighter mb-2">
+          BAHAM <span className="text-yellow-500">SPORTS</span>
+        </h1>
+        <p className="text-white/40 text-sm tracking-[0.3em] uppercase">Management System v2.0</p>
+      </div>
+
+      <div className="w-full max-w-6xl space-y-12">
+        {/* Live Games */}
+        <Link href="/live" className="w-full h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center gap-4 hover:border-red-500 transition-all">
+          <span className="relative flex h-3 w-3"><span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span><span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span></span>
+          <span className="font-black text-red-500 uppercase tracking-widest">View Live Games</span>
+        </Link>
+
+        {/* Featured Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <Link href="/leaderboard/season-1" className="h-32 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between px-8 hover:border-yellow-500 transition-all">
+            <span className="text-2xl font-black uppercase italic">Season 1 Leaderboard</span>
+            <span className="bg-yellow-500 text-black px-4 py-2 rounded-lg font-bold text-sm">VIEW</span>
+          </Link>
+          <Link href="/mvp-rankings" className="h-32 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-between px-8 hover:border-white/30 transition-all">
+            <span className="text-2xl font-black uppercase italic">MVP Tracker</span>
+            <span className="text-4xl">🏆</span>
+          </Link>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Sports Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {sports.map((sport) => (
+            <Link key={sport} href={`/${sport.toLowerCase()}/tournaments`}
+                  className="h-48 rounded-2xl border border-white/10 bg-white/5 flex flex-col items-center justify-center transition-all hover:border-yellow-500 hover:bg-white/10">
+              <span className="text-4xl mb-4">{sport === 'Basketball' ? '🏀' : sport === 'Pickleball' ? '🎾' : '🏐'}</span>
+              <span className="text-xl font-bold uppercase tracking-widest">{sport}</span>
+            </Link>
+          ))}
         </div>
-      </main>
-    </div>
+
+
+<Link 
+  href="/pickleball/tournaments" 
+  className="h-48 rounded-2xl border border-white/10 bg-white/5 flex flex-col items-center justify-center transition-all hover:border-yellow-500 hover:bg-white/10"
+>
+  <span className="text-4xl mb-4">🎾</span>
+  <span className="text-xl font-bold uppercase tracking-widest">Pickleball</span>
+</Link>
+
+        {/* --- ADDED BACK: Admin Portal --- */}
+        <Link href="/admin" 
+              className="w-full h-24 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center gap-4 hover:border-yellow-500 transition-all group">
+          <span className="text-2xl">⚙️</span>
+          <span className="font-bold text-white/50 uppercase tracking-widest group-hover:text-white transition-colors">System Admin Dashboard</span>
+        </Link>
+      </div>
+    </main>
   );
 }
