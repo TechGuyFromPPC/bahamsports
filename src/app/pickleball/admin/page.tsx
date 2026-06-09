@@ -3,6 +3,7 @@ import { useState } from 'react';
 import RosterManager from './components/RosterManager';
 import MatchLogger from './components/MatchLogger';
 import ScheduleManager from './components/ScheduleManager';
+import MatchCreator from './components/MatchCreator';
 
 export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('roster');
@@ -10,7 +11,8 @@ export default function AdminDashboard() {
   const modules = [
     { id: 'roster', label: 'Roster Manager' },
     { id: 'matches', label: 'Log Matches' },
-    { id: 'schedule', label: 'Schedule Manager' }, // Add this
+    { id: 'schedule', label: 'Schedule Manager' }, 
+    { id: 'create', label: 'Create Matches' },// Add this
   ];
 
   return (
@@ -33,6 +35,7 @@ export default function AdminDashboard() {
         {activeTab === 'roster' && <RosterManager />}
         {activeTab === 'matches' && <MatchLogger />}
         {activeTab === 'schedule' && <ScheduleManager />} {/* Add this */}
+        {activeTab === 'create' && <MatchCreator/>}
       </div>
     </main>
   );
