@@ -12,8 +12,9 @@ export default async function PlayerProfile({ params }: { params: { id: string }
     .eq('id', id)
     .single();
 
-    const totalKills = player.match_stats.reduce((acc: number, m: any) => acc + m.kills, 0);
-const totalAssists = player.match_stats.reduce((acc: number, m: any) => acc + m.assists, 0);
+   // Use ?. to safely access match_stats, and || [] to ensure reduce() has an array to work with
+const totalKills = player?.match_stats?.reduce((acc: number, m: any) => acc + (m.kills || 0), 0) || 0;
+const totalAssists = player?.match_stats?.reduce((acc: number, m: any) => acc + (m.assists || 0), 0) || 0;
   if (!player) return <div className="p-20 text-white">Player not found.</div>;
 
   return (
