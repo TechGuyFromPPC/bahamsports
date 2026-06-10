@@ -250,18 +250,18 @@ const tabs = [
         <span className="text-2xl font-black">Zone 1 E-Youths <span className="text-yellow-500">1</span></span>
       </div>
       
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {[1, 2, 3].map((game) => (
-          <Link 
-            key={game} 
-            href={`/esports/mlbb/matches/grand-final-game-${game}`} // Dynamic route to match detail
-            className="border border-white/10 p-4 rounded-xl hover:border-yellow-500 transition-all text-center group"
-          >
-            <p className="text-[10px] font-bold text-white/40 uppercase mb-2">Game {game}</p>
-            <p className="font-black text-lg group-hover:text-yellow-500">View Details</p>
-          </Link>
-        ))}
-      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+  {[1, 2, 3].map((game) => (
+    <Link 
+      key={game} 
+      href={`/esports/mlbb/matches/grand-final-game-${game}`}
+      className="border border-white/10 p-4 rounded-xl hover:border-yellow-500 transition-all text-center group w-full"
+    >
+      <p className="text-[10px] font-bold text-white/40 uppercase mb-2">Game {game}</p>
+      <p className="font-black text-lg group-hover:text-yellow-500">View Details</p>
+    </Link>
+  ))}
+</div>
     </div>
   </div>
 )}
